@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自主朗读，解释翻译</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+    .back-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        opacity: 0.5; /* 设置透明度为50% */
+    }
+  .bg-image {
+    /* 设置背景图片 */
+    background-image: url('qpy.zzt.jpg');
+    /* 设置背景大小覆盖整个页面 */
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .title-author {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%; /* 设置宽度，以便适应不同的屏幕尺寸 */
+	font-family: '楷体', sans-serif;
+  }
+
+  .poem-translation {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .line-pair {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .poem-line {
+    font-family: '楷体', sans-serif;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 40%; /* 设置宽度，以便适应不同的屏幕尺寸 */
+  }
+
+  .translation-line {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 40%; /* 设置宽度，以便适应不同的屏幕尺寸 */
+    transition: box-shadow 0.3s ease;
+  }
+
+  .translation-line:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+  }
+  .title-box {
+    display: inline-block;
+    border: 2px solid yellow;
+    padding: 4px;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+<body>
+<button class="back-button" onclick="window.location.href='https://www.example.com'">返回</button>
+<div class="bg-image">
+  <div class="title-author">
+    <div class="title-box">
+      <h2>清平乐·村居</h2>
+    </div>
+    <h2>辛弃疾【宋】</h2>
+  </div>
+
+  
+  <div class="poem-translation">
+    <div class="line-pair">
+      <h3 class="poem-line">
+        茅檐/低小，溪上/青青草。
+      </h3>
+      <div class="translation-line">
+        低矮的茅屋旁，一条小溪缓缓流淌，溪边青草茂密，映衬得小溪更加清澈。
+      </div>
+    </div>
+    <div class="line-pair">
+      <h3 class="poem-line">
+        醉里/吴音/相媚好，白发/谁家翁媪?
+      </h3>
+      <div class="translation-line">
+        那是谁家的老两口啊，在屋前用吴地方言聊着天，喝酒逗乐，真是其乐融融。
+      </div>
+    </div>
+    <div class="line-pair">
+      <h3 class="poem-line">
+        大儿/锄豆溪东，中儿/正织鸡笼。
+      </h3>
+      <div class="translation-line">
+        大儿勤劳，在溪东的豆田间锄草;二儿手巧，正在编织鸡笼。
+      </div>
+    </div>
+    <div class="line-pair">
+      <h3 class="poem-line">
+        最喜/小儿亡赖,溪头/卧剥莲蓬
+      </h3>
+      <div class="translation-line">
+        小儿最淘气可爱，在溪边剥莲蓬，自由自在。
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const titleBox = document.querySelector(".title-box");
+
+    titleBox.addEventListener("click", function() {
+      // 创建一个div元素作为方框
+      const box = document.createElement("div");
+      box.style.backgroundColor = "lightyellow"; // 设置方框底色为淡黄色
+      box.style.width = "300px"; // 设置方框宽度
+      box.style.height = "60px"; // 设置方框高度
+      box.style.display = "flex";
+      box.style.justifyContent = "center";
+      box.style.alignItems = "center";
+      box.style.borderRadius = "5px"; // 设置方框圆角
+      box.style.position = "absolute";
+      box.style.top = "-70px"; // 设置方框在标题上方
+      box.style.left = "50%";
+      box.style.transform = "translate(-50%, 0)"; // 居中显示
+
+      // 创建文本节点并添加到方框中
+      const text = document.createTextNode("词牌名：“清平乐”  “村居”意为乡村生活");
+      box.appendChild(text);
+
+      // 动态添加方框到标题旁边
+      this.appendChild(box);
+
+      // 防止重复点击添加多个方框
+      this.removeEventListener("click", arguments.callee);
+    });
+  });
+</script>
+
+
+</body>
+</html>
