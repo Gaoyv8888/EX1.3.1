@@ -10,11 +10,9 @@
     margin: 0;
     font-family: Arial, sans-serif;
   }
-   
+  
   .bg-image {
-    /* 设置背景图片 */
     background-image: url('qpy.zzt.jpg');
-    /* 设置背景大小覆盖整个页面 */
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,7 +32,9 @@
     width: 80%; /* 设置宽度，以便适应不同的屏幕尺寸 */
 	font-family: '楷体', sans-serif;
   }
-
+    .title-box:hover h1 {
+        cursor: pointer; /* 当鼠标悬停在标题上时，鼠标变为手形 */
+      }
   .poem-translation {
     position: absolute;
     top: 35%;
@@ -98,9 +98,18 @@
   	font-size: 50px;
   	font-family: '楷体', 'SimKai', 'Microsoft YaHei', sans-serif;
   	    }
+.info-box {
+    display: none;
+    position: absolute;
+    background-color: lightyellow;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 10;
+  }
 </style>
 </head>
 <body>
+
 
 <div class="bg-image">
   <div class="title-author">
@@ -111,25 +120,26 @@
   </div>
 <div class="back-arrow" onclick="window.location.href='https://gaoyv8888.github.io/EX1.3/'"></div>
   <div class="poem-translation">
-    <div class="line-pair">
-      <h3 class="poem-line">
-        茅檐/低小，溪上/青青草。
-      </h3>
-      <div class="translation-line">
-        低矮的茅屋旁，一条小溪缓缓流淌，溪边青草茂密，映衬得小溪更加清澈。
+      <div class="line-pair">
+        <h3 class="poem-line">
+          <span id="underline-text" style="text-decoration: underline; text-decoration-color: yellow; cursor: pointer;">茅檐</span>/低小，溪上/青青草。
+        </h3>
+        <div class="translation-line">
+          低矮的茅屋旁，一条小溪缓缓流淌，溪边青草茂密，映衬得小溪更加清澈。
+        </div>
       </div>
-    </div>
+
+    <div class="line-pair">
+          <h3 class="poem-line">
+            醉里/<span id="underline-text-xiangmeihao" style="text-decoration: underline; text-decoration-color: yellow; cursor: pointer;">相媚好</span>，白发/谁家翁媪?
+          </h3>
+          <div class="translation-line">
+            那是谁家的老两口啊，在屋前用吴地方言聊着天，喝酒逗乐，真是其乐融融。
+          </div>
+        </div>
     <div class="line-pair">
       <h3 class="poem-line">
-        醉里/吴音/相媚好，白发/谁家翁媪?
-      </h3>
-      <div class="translation-line">
-        那是谁家的老两口啊，在屋前用吴地方言聊着天，喝酒逗乐，真是其乐融融。
-      </div>
-    </div>
-    <div class="line-pair">
-      <h3 class="poem-line">
-        大儿/锄豆溪东，中儿/正织鸡笼。
+        大儿/<span id="underline-text-chudou" style="text-decoration: underline; text-decoration-color: yellow; cursor: pointer;">锄豆</span>溪东，中儿/正织鸡笼。
       </h3>
       <div class="translation-line">
         大儿勤劳，在溪东的豆田间锄草;二儿手巧，正在编织鸡笼。
@@ -137,14 +147,87 @@
     </div>
     <div class="line-pair">
       <h3 class="poem-line">
-        最喜/小儿亡赖,溪头/卧剥莲蓬
+        最喜/<span id="underline-text-wangle" style="text-decoration: underline; text-decoration-color: yellow; cursor: pointer;">亡赖</span>,溪头/卧剥莲蓬
       </h3>
       <div class="translation-line">
         小儿最淘气可爱，在溪边剥莲蓬，自由自在。
       </div>
     </div>
-  </div>
-</div>
+	<div id="info-box" class="info-box">
+	      茅檐：代指茅屋。
+	    </div>
+		<div id="info-box-xiangmeihao" class="info-box">
+		      相媚好：相互喜欢，相亲相爱。
+		    </div>
+		<div id="info-box-chudou" class="info-box">
+		  锄豆：在豆田里锄草。
+		</div>
+		<div id="info-box-wangle" class="info-box">
+		  亡赖：“亡”通“无”，指小孩顽皮淘气。
+		</div>
+	  </div>
+	</div>
+	
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	      // 处理“茅檐”点击事件
+	      const underlineText = document.getElementById("underline-text");
+	      const infoBox = document.getElementById("info-box");
+	      underlineText.addEventListener("click", function() {
+	        // 显示信息框
+	        infoBox.style.display = 'block';
+	        
+	        // 获取点击文本的位置信息
+	        const rect = underlineText.getBoundingClientRect();
+	        // 设置信息框的位置
+	        infoBox.style.top = (rect.bottom + window.scrollY - 260) + 'px'; 
+	        infoBox.style.left = (rect.left + window.scrollX - 150) + 'px'; 
+	      });
+	
+	    // 处理“相媚好”点击事件
+	    const underlineTextXiangmeihao = document.getElementById("underline-text-xiangmeihao");
+	    const infoBoxXiangmeihao = document.createElement("div");
+	    infoBoxXiangmeihao.className = "info-box";
+	    infoBoxXiangmeihao.textContent = "相媚好：相互喜欢，相亲相爱。";
+	    document.body.appendChild(infoBoxXiangmeihao);
+	
+	    underlineTextXiangmeihao.addEventListener("click", function() {
+	      // 显示信息框
+	      infoBoxXiangmeihao.style.display = 'block';
+	      // 获取点击文本的位置信息
+	      const rect = underlineTextXiangmeihao.getBoundingClientRect();
+	      // 设置信息框的位置
+	      infoBoxXiangmeihao.style.top = (rect.bottom + window.scrollY +20 ) + 'px';
+	      infoBoxXiangmeihao.style.left = (rect.left + window.scrollX + (underlineTextXiangmeihao.offsetWidth - infoBoxXiangmeihao.offsetWidth) / 2 ) + 'px';
+	    });
+		
+		// 处理“锄豆”点击事件
+		    const underlineTextChudou = document.getElementById("underline-text-chudou");
+		    const infoBoxChudou = document.getElementById("info-box-chudou");
+		    underlineTextChudou.addEventListener("click", function() {
+		      // 显示信息框
+		      infoBoxChudou.style.display = 'block';
+		      // 获取点击文本的位置信息
+		      const rect = underlineTextChudou.getBoundingClientRect();
+		      // 设置信息框的位置
+		      infoBoxChudou.style.top = (rect.bottom + window.scrollY - 260) + 'px';
+		      infoBoxChudou.style.left = (rect.left + window.scrollX - 150) + 'px';
+		    });
+			// 处理“亡赖”点击事件
+			    const underlineTextWangle = document.getElementById("underline-text-wangle");
+			    const infoBoxWangle = document.getElementById("info-box-wangle");
+			    underlineTextWangle.addEventListener("click", function() {
+			      // 显示信息框
+			      infoBoxWangle.style.display = 'block';
+			      // 获取点击文本的位置信息
+			      const rect = underlineTextWangle.getBoundingClientRect();
+			      // 设置信息框的位置
+			      infoBoxWangle.style.top = (rect.bottom + window.scrollY - 260) + 'px';
+			      infoBoxWangle.style.left = (rect.left + window.scrollX - 160) + 'px';
+			    });
+	  });
+	</script>
+		
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const titleBox = document.querySelector(".title-box");
@@ -176,7 +259,5 @@
     });
   });
 </script>
-
-
 </body>
 </html>
